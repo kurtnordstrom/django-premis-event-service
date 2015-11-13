@@ -496,7 +496,7 @@ def app_event(request, identifier=None):
             title=newEvent.event_identifier,
         )
         atomText = XML_HEADER % etree.tostring(atomXML, pretty_print=True)
-        resp = HttpResponse(atomText, mimetype="application/atom+xml")
+        resp = HttpResponse(atomText, content_type="application/atom+xml")
         resp.status_code = 201
         resp['Location'] = 'http://%s/APP/event/%s/' % (
             request.META['HTTP_HOST'],
@@ -607,7 +607,7 @@ def app_event(request, identifier=None):
             title=identifier,
         )
         atomText = XML_HEADER % etree.tostring(atomXML, pretty_print=True)
-        resp = HttpResponse(atomText, mimetype="application/atom+xml")
+        resp = HttpResponse(atomText, content_type="application/atom+xml")
         resp.status_code = 200
         return resp
     elif request.method == 'DELETE' and identifier:
